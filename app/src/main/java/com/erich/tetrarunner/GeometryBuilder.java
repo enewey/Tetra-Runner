@@ -51,10 +51,11 @@ public class GeometryBuilder
     };
 
     static float[] planeTriangles = null;
-    public static float[] getPlane()
+    static float[] planeTriangleNormals = null;
+    public static PointsPackage getPlane()
     {
-        if (planeTriangles != null)
-            return planeTriangles;
+        if (planeTriangles != null && planeTriangleNormals != null)
+            return new PointsPackage(planeTriangles, planeTriangleNormals);
 
         int[] elements = {
                 0,1,2,
@@ -71,14 +72,18 @@ public class GeometryBuilder
             planeTriangles[i+3] = 1.0f;
             j++;
         }
-        return planeTriangles;
+
+        planeTriangleNormals = getNormalsOfShape(planeTriangles);
+
+        return new PointsPackage(planeTriangles, planeTriangleNormals);
     }
 
     static float[] squareTriangles = null;
-    public static float[] getSquare()
+    static float[] squareTriangleNormals = null;
+    public static PointsPackage getSquare()
     {
-        if (squareTriangles != null)
-            return squareTriangles;
+        if (squareTriangles != null && squareTriangleNormals != null)
+            return new PointsPackage(squareTriangles, squareTriangleNormals);
 
         int[] elements = {
                 0,1,2,
@@ -95,14 +100,18 @@ public class GeometryBuilder
             squareTriangles[i+3] = 1.0f;
             j++;
         }
-        return squareTriangles;
+
+        squareTriangleNormals = getNormalsOfShape(squareTriangles);
+
+        return new PointsPackage(squareTriangles, squareTriangleNormals);
     }
 
     static float[] rightTetraTriangles = null;
-    public static float[] getRightTetrahedron()
+    static float[] rightTetraTriangleNormals = null;
+    public static PointsPackage getRightTetrahedron()
     {
-        if (rightTetraTriangles != null)
-            return rightTetraTriangles;
+        if (rightTetraTriangles != null && rightTetraTriangleNormals != null)
+            return new PointsPackage(rightTetraTriangles, rightTetraTriangleNormals);
 
         int[] elements = {
                 0,2,1,
@@ -121,14 +130,18 @@ public class GeometryBuilder
             rightTetraTriangles[i+3] = 1.0f;
             j++;
         }
-        return rightTetraTriangles;
+
+        rightTetraTriangleNormals = getNormalsOfShape(rightTetraTriangles);
+
+        return new PointsPackage(rightTetraTriangles, rightTetraTriangleNormals);
     }
 
     static float[] tetraTriangles = null;
-    public static float[] getTetrahedron()
+    static float[] tetraTriangleNormals = null;
+    public static PointsPackage getTetrahedron()
     {
-        if (tetraTriangles != null)
-            return tetraTriangles;
+        if (tetraTriangles != null && tetraTriangleNormals != null)
+            return new PointsPackage(tetraTriangles, tetraTriangleNormals);
 
         int[] elements = {
                 1,0,3,
@@ -147,14 +160,18 @@ public class GeometryBuilder
             tetraTriangles[i+3] = 1.0f;
             j++;
         }
-        return tetraTriangles;
+
+        tetraTriangleNormals = getNormalsOfShape(tetraTriangles);
+
+        return new PointsPackage(tetraTriangles, tetraTriangleNormals);
     }
 
     static float[] fourSidesTriangles = null;
-    public static float[] getFourSides()
+    static float[] fourSidesTriangleNormals = null;
+    public static PointsPackage getFourSides()
     {
-        if (fourSidesTriangles != null)
-            return fourSidesTriangles;
+        if (fourSidesTriangles != null && fourSidesTriangleNormals != null)
+            return new PointsPackage(fourSidesTriangles, fourSidesTriangleNormals);
 
         fourSidesTriangles = new float[24 * 4];
         int[] elements = {
@@ -178,14 +195,17 @@ public class GeometryBuilder
             j++;
         }
 
-        return fourSidesTriangles;
+        fourSidesTriangleNormals = getNormalsOfShape(fourSidesTriangles);
+
+        return new PointsPackage(fourSidesTriangles, fourSidesTriangleNormals);
     }
 
     static float[] cubeTriangles = null;
-    public static float[] getCube()
+    static float[] cubeTriangleNormals = null;
+    public static PointsPackage getCube()
     {
-        if (cubeTriangles != null)
-            return cubeTriangles;
+        if (cubeTriangles != null && cubeTriangleNormals != null)
+            return new PointsPackage(cubeTriangles, cubeTriangleNormals);
 
         cubeTriangles = new float[36 * 4];
         int[] elements = {
@@ -213,7 +233,9 @@ public class GeometryBuilder
             j++;
         }
 
-        return cubeTriangles;
+        cubeTriangleNormals = getNormalsOfShape(cubeTriangles);
+
+        return new PointsPackage(cubeTriangles, cubeTriangleNormals);
     }
 
     public static float[] getNormalsOfShape(float[] shape)

@@ -12,7 +12,7 @@ public class StringGraphic extends CharGraphic
     {
         float scaleY = 1.0f, scaleX = 1.0f;
 
-        points = GeometryBuilder.getSquare();
+        points = GeometryBuilder.getSquare().points;
         if (type == 0) //TIME:
         {
             texPoints = new float[]{

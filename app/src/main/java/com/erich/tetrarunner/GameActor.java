@@ -5,12 +5,12 @@ package com.erich.tetrarunner;
  */
 public class GameActor
 {
-    float[] points;
+    PointsPackage points;
     float[] ambient;
     float[] diffuse;
     float[] specular;
     float shine;
-    public float[] getPoints()
+    public PointsPackage getPoints()
     {
         return points;
     }

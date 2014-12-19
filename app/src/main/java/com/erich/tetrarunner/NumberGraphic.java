@@ -15,7 +15,7 @@ public class NumberGraphic extends CharGraphic
         Matrix.translateM(mvm, 0, x, y, 0.0f);
         Matrix.scaleM(mvm, 0, scale, scale, 1.0f);
 
-        points = GeometryBuilder.getSquare();
+        points = GeometryBuilder.getSquare().points;
         texPoints = new float[]{
             0.0f, 0.25f,
             0.0f, 0.0f,

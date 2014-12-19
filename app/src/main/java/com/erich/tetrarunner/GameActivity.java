@@ -289,8 +289,8 @@ public class GameActivity extends Activity implements GLSurfaceView.Renderer
         _modelViewMatrix = new float[16];
         _shipNodes = new Node[3];
 
-        _cubePoints = GeometryBuilder.getCube();
-        _rightTetrahedronPoints = GeometryBuilder.getRightTetrahedron();
+//        _cubePoints = GeometryBuilder.getCube();
+//        _rightTetrahedronPoints = GeometryBuilder.getRightTetrahedron();
 
         initializeBoard();
         _positionOffset = 3.0f;
@@ -777,7 +777,7 @@ public class GameActivity extends Activity implements GLSurfaceView.Renderer
         Matrix.scaleM(instanceMatrix, 0, 0.15f, 0.05f, 0.35f);
         Node shape = new Node(instanceMatrix);
         shape.setColor(shipAmbient, shipDiffuse, shipSpecular);
-        shape.setPoints(_cubePoints.clone());
+        shape.setPoints(GeometryBuilder.getCube());
         shape.setShine(2.0f);
         _shipNodes[0] = shape;
         //Right Wing
@@ -786,7 +786,7 @@ public class GameActivity extends Activity implements GLSurfaceView.Renderer
         Matrix.scaleM(instanceMatrix, 0, 0.35f, 0.15f, 1.0f);
         shape = new Node(instanceMatrix);
         shape.setColor(shipAmbient, shipDiffuse, shipSpecular);
-        shape.setPoints(_rightTetrahedronPoints.clone());
+        shape.setPoints(GeometryBuilder.getRightTetrahedron());
         shape.setShine(2.0f);
         _shipNodes[1] = shape;
         //Left Wing
@@ -796,7 +796,7 @@ public class GameActivity extends Activity implements GLSurfaceView.Renderer
         Matrix.rotateM(instanceMatrix, 0, 90, 0.0f, 0.0f, 1.0f);
         shape = new Node(instanceMatrix);
         shape.setColor(shipAmbient, shipDiffuse, shipSpecular);
-        shape.setPoints(_rightTetrahedronPoints.clone());
+        shape.setPoints(GeometryBuilder.getRightTetrahedron());
         shape.setShine(2.0f);
         _shipNodes[2] = shape;
 

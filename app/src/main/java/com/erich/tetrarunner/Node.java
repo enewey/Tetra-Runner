@@ -13,9 +13,9 @@ public class Node
 {
     float[] points;
     float[] normals;
-    public void setPoints(float[] points) {
-        this.points = points.clone();
-        this.normals = GeometryBuilder.getNormalsOfShape(this.points);
+    public void setPoints(PointsPackage p) {
+        this.points = p.points;
+        this.normals = p.normals;
     }
 
     float[] transformationMatrix;
