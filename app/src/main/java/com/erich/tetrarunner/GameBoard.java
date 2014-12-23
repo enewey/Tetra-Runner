@@ -18,14 +18,15 @@ import java.util.UUID;
 
 /**
  * Created by Erich on 11/28/2014.
+ * Represents the entirety of a level. Contains the name of the board/track, the objects within, etc.
  */
 public class GameBoard
 {
-    final static int BOARD_WIDTH = 5;
-    public enum GameDifficulty { EASY, MODERATE, HARD, EXTREME }
+    final static int BOARD_WIDTH = 5; //Constant value... don't make boards wider than this.
+    public enum GameDifficulty { EASY, MODERATE, HARD, EXTREME } //Four difficulty types
 
-    ArrayList<ActorGroup> _board;
-    String boardName;
+    ArrayList<ActorGroup> _board;   //Contains all the objects in this level
+    String boardName;               //Name of this board
 
     GameDifficulty difficulty;
     public GameDifficulty getDifficulty() {
@@ -43,11 +44,16 @@ public class GameBoard
         this.numOfCoins = numOfCoins;
     }
 
+    /**
+     *  Constructor. Give it a name and a difficulty; no objects are built here.
+     * @param name - String
+     * @param diff - GameDifficulty
+     */
     public GameBoard(String name, GameDifficulty diff)
     {
         boardName = name;
         difficulty = diff;
-        _board = new ArrayList<ActorGroup>();
+        _board = new ArrayList<ActorGroup>(); //Create empty board
     }
 
     /**
@@ -59,6 +65,7 @@ public class GameBoard
     {
         _board = new ArrayList<ActorGroup>();
 
+        //Read and load the board data from a file, given a file name.
         try{
             InputStream inputStream = context.getAssets().open("levels/"+fileName);
             InputStreamReader fileReader = new InputStreamReader(inputStream);
@@ -130,6 +137,12 @@ public class GameBoard
         return _board;
     }
 
+    /**
+     * Method used for manually constructing a GameBoard via code
+     * @param up    - upper layer
+     * @param floor - lower layer
+     * @return      - returns the ActorGroup added.
+     */
     public ActorGroup addActorGroup(GameActor[] up, GameActor[] floor)
     {
         ActorGroup n = new ActorGroup(up, floor, _board.size() + 1);
@@ -137,6 +150,10 @@ public class GameBoard
         return n;
     }
 
+    /**
+     *  Adds a blank ActorGroup to this board.
+     * @return - the blank ActorGroup added.
+     */
     public ActorGroup addActorGroup()
     {
         ActorGroup n = new ActorGroup(new GameActor[BOARD_WIDTH], new GameActor[BOARD_WIDTH], _board.size() + 1);
@@ -149,6 +166,10 @@ public class GameBoard
         return _board.size();
     }
 
+    /**
+     *  Save this board's data to a file.
+     * @param context - Context object to get file directory
+     */
     public void writeBoardToFile(Context context)
     {
         Gson gson = new Gson();

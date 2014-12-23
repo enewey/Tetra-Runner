@@ -4,10 +4,19 @@ import android.opengl.Matrix;
 
 /**
  * Created by Erich on 12/11/2014.
+ *  Similar to number graphic;
+ *  Used to draw specific strings using the nums drawable
  */
 public class StringGraphic extends CharGraphic
 {
 
+    /**
+     *  Constructor.
+     * @param x - X position to draw at
+     * @param y - Y position to draw at
+     * @param type  - Type of string to draw (see inside method)
+     * @param scale - Scale the string size
+     */
     public StringGraphic(float x, float y, int type, float scale)
     {
         float scaleY = 1.0f, scaleX = 1.0f;

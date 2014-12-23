@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 /**
  * Created by Erich on 12/11/2014.
- *
+ *  Draws the title screen, and contains five selections.
  */
 public class TitleScreenFragment extends Fragment
 {

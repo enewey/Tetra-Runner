@@ -17,7 +17,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Erich on 12/11/2014.
- * Select a level
+ * Fragment used to select a level.
+ * Acts as a ListAdapter.
  */
 public class LevelSelectFragment extends Fragment implements ListAdapter
 {
@@ -126,6 +127,9 @@ public class LevelSelectFragment extends Fragment implements ListAdapter
         return false;
     }
 
+    /**
+     *  Overridden method returns a TextView that displays information about a level.
+     */
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup)
     {

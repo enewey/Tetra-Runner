@@ -9,7 +9,9 @@ import android.widget.FrameLayout;
 
 /**
  * Created by Erich on 12/3/2014.
- *
+ *  Controls the fragments that move the game between states.
+ *  Initialized with the TitleScreen fragment.
+ *  Layouts are all made programmatically.
  */
 public class MainActivity extends Activity implements TitleScreenFragment.OnSelectionListener, LevelSelectFragment.OnItemSelectedListener
 {
@@ -42,6 +44,10 @@ public class MainActivity extends Activity implements TitleScreenFragment.OnSele
         setContentView(frame);
     }
 
+    /**
+     *  Method to dictate what fragment to activate when selecting an option.
+     * @param selection - selection ID (see fields)
+     */
     @Override
     public void OnSelection(int selection)
     {
@@ -109,6 +115,12 @@ public class MainActivity extends Activity implements TitleScreenFragment.OnSele
         addTransaction.commit();
     }
 
+    /**
+     * Interface method for the LevelSelectFragment; either starts a game using the selected level,
+     *  or views the records for the selected level.
+     * @param gameListFragment - not really used
+     * @param gameName - Name of the level selected
+     */
     @Override
     public void onItemSelected(LevelSelectFragment gameListFragment, String gameName)
     {

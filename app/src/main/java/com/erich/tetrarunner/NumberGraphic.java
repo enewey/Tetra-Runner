@@ -4,10 +4,20 @@ import android.opengl.Matrix;
 
 /**
  * Created by Erich on 12/11/2014.
+ *  Object for drawing a number on the screen using on the 'nums' drawable
+ *  Contains the geometry to draw a square, and map the appropriate texture to it.
  */
 public class NumberGraphic extends CharGraphic
 {
     //CURRENTLY ONLY SUPPORTS NUMBERS.
+
+    /**
+     *  Constructor.
+     * @param x - X position to draw at
+     * @param y - Y position to draw at
+     * @param c - Character to draw; only supports numbers. ':' will give a triangle symbol.
+     * @param scale - Scale the size of the number.
+     */
     public NumberGraphic(float x, float y, char c, float scale)
     {
         mvm = new float[16];

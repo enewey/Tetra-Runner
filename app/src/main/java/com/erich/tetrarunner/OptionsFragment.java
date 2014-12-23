@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 /**
  * Created by Erich on 12/13/2014.
+ * Displays various options for the game.
+ *  Currently, only available options are for turning on/off music and sound.
+ *  Also has some "about" information.
  */
 public class OptionsFragment extends Fragment
 {

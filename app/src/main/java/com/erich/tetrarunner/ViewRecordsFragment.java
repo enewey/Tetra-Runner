@@ -23,6 +23,7 @@ public class ViewRecordsFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        //Get the mins/secs/hundredths component for the best time
         long bestTime = _record.getBestTime();
         int mins, secs, hundredths;
         mins = (int)Math.floor(bestTime / 60000);

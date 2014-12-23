@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 /**
  * Created by Erich on 12/13/2014.
+ *  Displays a series of images that serve as a tutorial for the user.
  */
 public class TutorialFragment extends Fragment
 {

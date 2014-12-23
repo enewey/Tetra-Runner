@@ -2,9 +2,12 @@ package com.erich.tetrarunner;
 
 /**
  * Created by Erich on 11/24/2014.
+ * Contains static methods for building simple geometric objects.
  */
 public class GeometryBuilder
 {
+    //Points for various geometry
+
     final static float[] planePoints =
     {
             -0.5f, 0.0f, -0.5f,
@@ -49,6 +52,9 @@ public class GeometryBuilder
             0.5f, 0.5f, -0.5f, //top right back
             0.5f, -0.5f, -0.5f //bottom right back
     };
+
+    //Each get method will first check if the static triangles array has been initialized
+    //  already; if it has, the method simply returns it. If not, initialize the triangles array.
 
     static float[] planeTriangles = null;
     static float[] planeTriangleNormals = null;
@@ -238,6 +244,12 @@ public class GeometryBuilder
         return new PointsPackage(cubeTriangles, cubeTriangleNormals);
     }
 
+    /**
+     *  Get the normals of a geometric shape made up of triangles.
+     *      Very expensive; use as little as possible!
+     * @param shape - array of points representing 3D geometry in triangles
+     * @return - array of normal vectors to the input shape
+     */
     public static float[] getNormalsOfShape(float[] shape)
     {
         float[] ret = new float[shape.length];
@@ -260,6 +272,9 @@ public class GeometryBuilder
         return ret;
     }
 
+    /**
+     *  Helper method to get the normal of a single triangle.
+     */
     public static float[] getNormalOfTriangle(float u1, float u2, float u3,
                                        float v1, float v2, float v3,
                                        float w1, float w2, float w3)
@@ -271,6 +286,9 @@ public class GeometryBuilder
         return ret;
     }
 
+    /**
+     *  Calculate the cross product of two vectors.
+     */
     public static float[] cross(float u1, float u2, float u3, float v1, float v2, float v3)
     {
         float[] result = new float[3];
@@ -283,6 +301,9 @@ public class GeometryBuilder
         return result;
     }
 
+    /**
+     *  Convert a trio of vectors into a column major matrix.
+     */
     public static float[] getColMajorMatrix(float[] u, float[] v, float[] w)
     {
         float[] ret = new float[16];

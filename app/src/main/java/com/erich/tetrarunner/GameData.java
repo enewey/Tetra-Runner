@@ -20,12 +20,14 @@ import java.util.UUID;
 /**
  * Created by Erich on 12/12/2014.
  * Builds stages for the game, loads and stores GameBoard objects into memory.
+ * All file writing uses Gson / Json.
  */
 public class GameData
 {
     private static HashMap<String, GameBoard> allBoards;
     private static HashMap<String, GameRecord> allRecords;
 
+    //-------------------------------------------Begin game-building methods (manual construction)
     static GameBoard buildGameA(Context context)
     {
         int trackSize = 165;
@@ -308,7 +310,12 @@ public class GameData
         gameBoard.setNumOfCoins(coinAmount);
         return gameBoard;
     }
+    //-------------------------------------------End game-building methods
 
+    /**
+     *  Loads all levels into memory.
+     * @param context - Context object
+     */
     public static void initialize(Context context)
     {
         allBoards = new HashMap<String, GameBoard>();
@@ -324,13 +331,14 @@ public class GameData
 
         for (String fileName : fileList)
         {
-            if (fileName.startsWith("level_"))
+            if (fileName.startsWith("level_")) //Level files start with this prefix.
             {
                 GameBoard gameBoard = new GameBoard(context, fileName);
                 allBoards.put(gameBoard.boardName, gameBoard);
             }
         }
 
+        //Load records for each level from file.
         allRecords = new HashMap<String, GameRecord>();
         try{
             File file = new File(context.getFilesDir(), "game_records.txt");
@@ -356,6 +364,7 @@ public class GameData
             e.printStackTrace();
         }
 
+        //If records do not exist in file for a level, create a record with initial dummy values.
         for (String gameName : allBoards.keySet())
         {
             if (allRecords.get(gameName) == null)
@@ -363,6 +372,10 @@ public class GameData
         }
     }
 
+    /**
+     *  Writes all records to file
+     * @param context - Context object
+     */
     public static void saveGameRecords(Context context)
     {
         Gson gson = new Gson();
@@ -387,6 +400,10 @@ public class GameData
         }
     }
 
+    /**
+     *  Get the name of each game loaded from file
+     * @return - List of names
+     */
     public static ArrayList<String> getGameNames()
     {
         if (allBoards == null) {
@@ -403,6 +420,11 @@ public class GameData
         return ret;
     }
 
+    /**
+     *  Get a specific GameBoard by its name.
+     * @param gameName - name of the GameBoard
+     * @return - GameBoard object
+     */
     public static GameBoard getGameBoard(String gameName)
     {
         if (allBoards == null) {
@@ -413,6 +435,11 @@ public class GameData
         return allBoards.get(gameName);
     }
 
+    /**
+     *  Gets the records for a specific game, using its name
+     * @param gameName - name of the GameBoard
+     * @return  - GameRecord object.
+     */
     public static GameRecord getGameRecord(String gameName)
     {
         if (allRecords == null) {

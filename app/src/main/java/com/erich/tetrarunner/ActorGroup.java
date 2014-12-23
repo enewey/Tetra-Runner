@@ -2,6 +2,7 @@ package com.erich.tetrarunner;
 
 /**
  * Created by Erich on 11/28/2014.
+ * Represents a row of objects in the game.
  */
 public class ActorGroup
 {

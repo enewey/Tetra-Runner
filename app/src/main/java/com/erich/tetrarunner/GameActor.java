@@ -2,6 +2,8 @@ package com.erich.tetrarunner;
 
 /**
  * Created by Erich on 11/28/2014.
+ *  Represents an in-game object.
+ *  Possibly somewhat redundant, given the Node class.
  */
 public class GameActor
 {
@@ -26,6 +28,10 @@ public class GameActor
         return _type;
     }
 
+    /**
+     *  Constructor automatically sets the points and color of the object type.
+     * @param t - the ActorType of this Actor.
+     */
     public GameActor(ActorType t)
     {
         _type = t;
