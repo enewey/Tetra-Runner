@@ -524,9 +524,10 @@ public class GameActivity extends Activity implements GLSurfaceView.Renderer
         //If low frame rate, position will skip over squares at high velocity
         float tempPosition = _position;
         float tempVelocity = _velocity * factor;
-        while (tempVelocity > 0.5f)
+        while (tempVelocity > 1.0f)
         {
-            tempVelocity -= 0.5f;
+            tempVelocity -= 1.0f;
+            _position = tempPosition;
             _position += tempVelocity;
             collisionDetection(factor);
         }
@@ -548,7 +549,10 @@ public class GameActivity extends Activity implements GLSurfaceView.Renderer
             _onGround = true;
         }
         else if (_falling) {
-            _onGround = false;
+            if (_onGround) {
+                _verticalVelocity = -1.0f; //Make falling a little more punishing as well.
+                _onGround = false;
+            }
             if (_shipPositionY < -3.0f) //If fallen too far, we are dead.
             {
                 death();
@@ -729,7 +733,6 @@ public class GameActivity extends Activity implements GLSurfaceView.Renderer
             }
             else if (type == GameActor.ActorType.empty || _shipPositionY < -0.2f) {
                 _falling = true;
-                _verticalVelocity = -0.5f; //Make falling a little more punishing as well.
             }
         }
         else
